@@ -4,10 +4,9 @@ import { type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTriangleExclamation, faCircleDot } from "@fortawesome/free-solid-svg-icons";
+import { faCircleDot } from "@fortawesome/free-solid-svg-icons";
 import { BriefBountyLogo } from "./BriefBountyLogo";
 import { WalletConnect } from "./WalletConnect";
-import { WALLETCONNECT_PROJECT_ID } from "@/app/providers";
 import { hasContract, CONTRACT } from "@/lib/briefbounty";
 import { CHAIN_ID } from "@/lib/studionet";
 import { Hex } from "./ui";
@@ -31,10 +30,10 @@ export function Shell({ children }: { children: ReactNode }) {
         <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center justify-between gap-3 px-4 lg:px-6">
           <Link href="/"><BriefBountyLogo /></Link>
           <div className="hidden items-center gap-3 text-[11px] text-muted md:flex">
-            <span className="font-serif italic">“Concepts, judged in public.”</span>
-            <span className="text-line">·</span>
+            <span className="font-serif italic">Concepts, judged in public.</span>
+            <span className="text-line">|</span>
             <FontAwesomeIcon icon={faCircleDot} className="h-2.5 w-2.5 text-accent animate-tickerpulse" /> Studionet {CHAIN_ID}
-            <span className="text-line">·</span>
+            <span className="text-line">|</span>
             {hasContract() ? <Hex value={CONTRACT} kind="contract" lead={5} tail={4} /> : <span className="text-gold">no contract</span>}
           </div>
           <WalletConnect />
@@ -51,12 +50,6 @@ export function Shell({ children }: { children: ReactNode }) {
       </header>
 
       <main className="w-full flex-1">
-        {!WALLETCONNECT_PROJECT_ID && (
-          <div className="border-b border-gold/40 bg-gold/5 px-4 py-2 text-xs text-muted">
-            <FontAwesomeIcon icon={faTriangleExclamation} className="mr-2 h-3.5 w-3.5 text-gold" />
-            <span className="font-semibold text-ink">Local dev:</span> no WalletConnect project id - injected wallets (MetaMask) work; the WalletConnect QR flow is disabled. Set <span className="mono">NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID</span> to enable it.
-          </div>
-        )}
         {children}
       </main>
     </div>

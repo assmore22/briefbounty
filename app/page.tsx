@@ -50,9 +50,9 @@ export default function WallPage() {
     <div className="pb-16">
       {/* edition line */}
       <div className="mx-auto flex w-full max-w-[1440px] flex-wrap items-baseline justify-between gap-2 border-b border-line px-4 py-2 lg:px-6">
-        <div className="headline text-xl">The Creative Review · Brief Wall</div>
+        <div className="headline text-xl">The Creative Review | Brief Wall</div>
         <div className="font-mono text-[11px] text-muted">
-          {stats.data ? `${stats.data.briefs} briefs · ${stats.data.concepts} concepts · ${stats.data.rankedBriefs} ranked · ${stats.data.lowEffortConcepts} low-effort · ${stats.data.auditRecords} records` : "loading edition…"}
+          {stats.data ? `${stats.data.briefs} briefs | ${stats.data.concepts} concepts | ${stats.data.rankedBriefs} ranked | ${stats.data.lowEffortConcepts} low-effort | ${stats.data.auditRecords} records` : "loading edition…"}
         </div>
       </div>
 
@@ -85,7 +85,7 @@ export default function WallPage() {
             <>
               <article className="sheet p-5">
                 <div className="flex items-center justify-between gap-3">
-                  <span className="kicker">{brief.brandName} · {brief.status}</span>
+                  <span className="kicker">{brief.brandName} | {brief.status}</span>
                   <StatusChip status={brief.status} kind="brief" />
                 </div>
                 <h1 className="mt-1 headline text-3xl leading-tight">{brief.title}</h1>
@@ -131,7 +131,7 @@ export default function WallPage() {
         {/* right: score rosette + ticker */}
         <aside className="mt-4 lg:mt-0">
           <div className="sheet p-3">
-            <div className="kicker mb-1">Score rosette{concept ? ` · concept #${concept.conceptId}` : ""}</div>
+            <div className="kicker mb-1">Score rosette{concept ? ` | concept #${concept.conceptId}` : ""}</div>
             <ScoreRosette concept={concept} size={236} />
           </div>
           <div className="sheet mt-4 p-3">
@@ -139,7 +139,7 @@ export default function WallPage() {
             <div className="space-y-1.5 font-mono text-[11px]">
               {(challenges.data ?? []).slice(0, 4).map((c) => <div key={`c${c.challengeId}`} className="flex items-center gap-1.5 text-muted animate-tickerpulse"><span className="text-primary">▸ challenge#{c.challengeId}</span> brief#{c.briefId}</div>)}
               {(appeals.data ?? []).slice(0, 4).map((a) => <div key={`a${a.appealId}`} className="flex items-center gap-1.5 text-muted"><span className="text-gold">▸ appeal#{a.appealId}</span> brief#{a.briefId}</div>)}
-              {(challenges.data?.length ?? 0) === 0 && (appeals.data?.length ?? 0) === 0 && <div className="text-muted">no open disputes · wire clear</div>}
+              {(challenges.data?.length ?? 0) === 0 && (appeals.data?.length ?? 0) === 0 && <div className="text-muted">no open disputes | wire clear</div>}
             </div>
           </div>
         </aside>
@@ -248,7 +248,7 @@ function SubmitForm({ run, busy, brief, onDone }: { run: ReturnType<typeof useTx
   const valid = title.trim() && summary.trim();
   return (
     <div className="space-y-3">
-      <div className="kicker">for: {brief.brandName} · #{brief.briefId} {brief.title}</div>
+      <div className="kicker">for: {brief.brandName} | #{brief.briefId} {brief.title}</div>
       <label className="block"><span className="label">Concept title</span><input className="field mt-1.5" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Build with judgment-aware apps" /></label>
       <label className="block"><span className="label">Concept summary</span><textarea className="field mt-1.5 min-h-[80px] font-serif" value={summary} onChange={(e) => setSummary(e.target.value)} placeholder="A developer campaign that frames…" /></label>
       <label className="block"><span className="label">Execution plan</span><textarea className="field mt-1.5 min-h-[60px]" value={plan} onChange={(e) => setPlan(e.target.value)} placeholder="Compact launch page, code-path examples…" /></label>
@@ -262,7 +262,7 @@ function PickConceptForm({ run, busy, brief, concepts, label, fn, onDone }: { ru
   const [cid, setCid] = useState("");
   return (
     <div className="space-y-3">
-      <div className="kicker">brief #{brief.briefId} · {brief.title}</div>
+      <div className="kicker">brief #{brief.briefId} | {brief.title}</div>
       {concepts.length === 0 ? <Empty title="No eligible concepts" hint="Submit a concept first." /> :
         <>
           <label className="block"><span className="label">Concept</span>
@@ -281,7 +281,7 @@ function RankingForm({ run, busy, brief, concepts, onDone }: { run: ReturnType<t
   const shortlisted = concepts.filter((c) => ["shortlisted", "finalist"].includes(c.status));
   return (
     <div className="space-y-3">
-      <div className="kicker">brief #{brief.briefId} · {brief.title}</div>
+      <div className="kicker">brief #{brief.briefId} | {brief.title}</div>
       <p className="text-sm text-muted">Publishes a public ranking of shortlisted/finalist concepts ordered by average score. {shortlisted.length} concept(s) currently eligible.</p>
       <ol className="divide-y divide-line border-y border-line text-sm">
         {shortlisted.map((c, i) => <li key={c.conceptId} className="flex items-center gap-3 py-2"><span className="headline text-gold">{i + 1}</span><span className="flex-1 truncate">{c.conceptTitle}</span><span className="mono text-muted">{Math.round((c.originalityScore + c.brandFitScore + c.feasibilityScore) / 3)}</span></li>)}
@@ -299,7 +299,7 @@ function DisputeForm({ run, busy, brief, concepts, label, fn, onDone }: { run: R
   const valid = cid && reason.trim();
   return (
     <div className="space-y-3">
-      <div className="kicker">brief #{brief.briefId} · {brief.title}</div>
+      <div className="kicker">brief #{brief.briefId} | {brief.title}</div>
       <label className="block"><span className="label">Concept</span>
         <select className="field mt-1.5" value={cid} onChange={(e) => setCid(e.target.value)}>
           <option value="">Select…</option>

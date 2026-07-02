@@ -39,7 +39,7 @@ export default function SubmitPage() {
               {(open.data ?? []).map((b) => <option key={b.briefId} value={b.briefId}>#{b.briefId} - {b.brandName}: {b.title} ({b.status})</option>)}
             </select>
           </label>}
-        {briefId && (() => { const b = (open.data ?? []).find((x) => x.briefId === briefId); return b ? <div className="flex items-center gap-2 rounded border border-line bg-bg p-2 text-xs text-muted"><StatusChip status={b.status} kind="brief" /> rubric: {b.scoringRubric.join(", ") || "-"} · min score {b.minScoreToShortlist}</div> : null; })()}
+        {briefId && (() => { const b = (open.data ?? []).find((x) => x.briefId === briefId); return b ? <div className="flex items-center gap-2 rounded border border-line bg-bg p-2 text-xs text-muted"><StatusChip status={b.status} kind="brief" /> rubric: {b.scoringRubric.join(", ") || "-"} | min score {b.minScoreToShortlist}</div> : null; })()}
         <label className="block"><span className="label">Concept title</span><input className="field mt-1.5" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Build with judgment-aware apps" /></label>
         <label className="block"><span className="label">Concept summary</span><textarea className="field mt-1.5 min-h-[100px] font-serif" value={summary} onChange={(e) => setSummary(e.target.value)} placeholder="A developer-facing campaign that frames the product around verifiable AI decisions…" /></label>
         <label className="block"><span className="label">Execution plan</span><textarea className="field mt-1.5 min-h-[70px]" value={plan} onChange={(e) => setPlan(e.target.value)} placeholder="Launch page, code examples, a short explainer…" /></label>

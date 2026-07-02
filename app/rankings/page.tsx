@@ -34,7 +34,7 @@ export default function RankingsPage() {
               <p className="mt-1 line-clamp-2 font-serif text-sm text-muted">{b.campaignGoal}</p>
               <div className="rule my-2" />
               <div className="flex items-center justify-between text-xs text-muted">
-                <span>{b.conceptIds.length} concept(s) · {b.rankingIds.length} ranking(s)</span>
+                <span>{b.conceptIds.length} concept(s) | {b.rankingIds.length} ranking(s)</span>
                 <span className="inline-flex items-center gap-1 text-primary group-hover:underline">Open <FontAwesomeIcon icon={faArrowRight} className="h-2.5 w-2.5" /></span>
               </div>
               {b.selectedConceptId && <div className="mt-2 chip border-gold/70 bg-gold/10 text-gold">★ awarded concept #{b.selectedConceptId}</div>}

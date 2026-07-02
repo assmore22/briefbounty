@@ -43,7 +43,7 @@ export default function BriefDetail() {
         brief.error || !b ? <div className="mt-3"><Banner tone="danger" title="Brief not found">{brief.error ?? `No brief #${id}.`}</Banner></div> :
         <>
           <article className="sheet mt-3 p-5">
-            <div className="flex items-center justify-between gap-3"><span className="kicker">{b.brandName} · brief #{b.briefId}</span><StatusChip status={b.status} kind="brief" /></div>
+            <div className="flex items-center justify-between gap-3"><span className="kicker">{b.brandName} | brief #{b.briefId}</span><StatusChip status={b.status} kind="brief" /></div>
             <h1 className="mt-1 headline text-3xl leading-tight">{b.title}</h1>
             <div className="rule my-3" />
             <p className="font-serif text-[15px] leading-relaxed text-ink/90">{b.campaignGoal}</p>
@@ -92,7 +92,7 @@ export default function BriefDetail() {
                             <span className="min-w-0 flex-1">
                               <span className="flex flex-wrap items-center gap-2"><span className="font-serif font-semibold">{c.conceptTitle}</span><StatusChip status={c.status} kind="concept" /><VerdictBadge verdict={c.verdict} /></span>
                               <span className="mt-0.5 block text-xs text-muted">{c.conceptSummary}</span>
-                              <span className="mt-0.5 block text-[11px] text-muted">by {truncateHex(c.creator, 6, 4)}{c.verdict ? ` · O${c.originalityScore} B${c.brandFitScore} F${c.feasibilityScore} risk${c.lowEffortRiskScore}` : ""}</span>
+                              <span className="mt-0.5 block text-[11px] text-muted">by {truncateHex(c.creator, 6, 4)}{c.verdict ? ` | O${c.originalityScore} B${c.brandFitScore} F${c.feasibilityScore} risk${c.lowEffortRiskScore}` : ""}</span>
                             </span>
                             <span className="shrink-0 text-right"><span className="headline text-xl">{c.verdict ? avg3(c) : "-"}</span></span>
                           </button>
@@ -108,7 +108,7 @@ export default function BriefDetail() {
                   </ol>}
               </div>
               <aside className="sheet h-fit p-3">
-                <div className="kicker mb-1">Rosette{selected ? ` · #${selected.conceptId}` : ""}</div>
+                <div className="kicker mb-1">Rosette{selected ? ` | #${selected.conceptId}` : ""}</div>
                 <ScoreRosette concept={selected} size={272} />
                 {selected?.strengths?.length ? <div className="mt-2 text-xs"><div className="label">Strengths</div><ul className="mt-1 list-disc pl-4 text-muted">{selected.strengths.slice(0, 4).map((s, i) => <li key={i}>{s}</li>)}</ul></div> : null}
                 {selected?.weaknesses?.length ? <div className="mt-2 text-xs"><div className="label">Weaknesses</div><ul className="mt-1 list-disc pl-4 text-muted">{selected.weaknesses.slice(0, 4).map((s, i) => <li key={i}>{s}</li>)}</ul></div> : null}

@@ -33,7 +33,7 @@ export default function DisputesPage() {
             (challenges.data ?? []).length === 0 ? <div className="sheet"><Empty icon={faGavel} title="No open challenges" /></div> :
             <div className="space-y-3">{(challenges.data ?? []).map((c) => (
               <article key={c.challengeId} className="sheet p-4">
-                <div className="flex items-center justify-between"><span className="kicker">Challenge #{c.challengeId} · brief #{c.briefId} · concept #{c.conceptId}</span><StatusChip status={c.status} kind="decision" /></div>
+                <div className="flex items-center justify-between"><span className="kicker">Challenge #{c.challengeId} | brief #{c.briefId} | concept #{c.conceptId}</span><StatusChip status={c.status} kind="decision" /></div>
                 <p className="mt-1 font-serif text-sm text-ink/90">{c.reason}</p>
                 {c.evidenceUrls.length > 0 && <div className="mt-1 flex flex-wrap gap-2 text-xs">{c.evidenceUrls.map((u) => <ExtLink key={u} href={u}>{hostOf(u)}</ExtLink>)}</div>}
                 <div className="mt-2 flex items-center justify-between"><span className="text-[11px] text-muted">by <Hex value={c.challenger} lead={5} tail={4} /></span>
@@ -48,7 +48,7 @@ export default function DisputesPage() {
             (appeals.data ?? []).length === 0 ? <div className="sheet"><Empty icon={faScaleBalanced} title="No open appeals" /></div> :
             <div className="space-y-3">{(appeals.data ?? []).map((a) => (
               <article key={a.appealId} className="sheet p-4">
-                <div className="flex items-center justify-between"><span className="kicker">Appeal #{a.appealId} · brief #{a.briefId} · concept #{a.conceptId}</span><StatusChip status={a.status} kind="decision" /></div>
+                <div className="flex items-center justify-between"><span className="kicker">Appeal #{a.appealId} | brief #{a.briefId} | concept #{a.conceptId}</span><StatusChip status={a.status} kind="decision" /></div>
                 <p className="mt-1 font-serif text-sm text-ink/90">{a.reason}</p>
                 {a.evidenceUrls.length > 0 && <div className="mt-1 flex flex-wrap gap-2 text-xs">{a.evidenceUrls.map((u) => <ExtLink key={u} href={u}>{hostOf(u)}</ExtLink>)}</div>}
                 <div className="mt-2 flex items-center justify-between"><span className="text-[11px] text-muted">by <Hex value={a.appellant} lead={5} tail={4} /></span>

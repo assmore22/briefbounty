@@ -77,7 +77,7 @@ export default function ProfilePage() {
               {(briefs.data ?? []).length === 0 ? <div className="sheet"><Empty title="No briefs" /></div> :
                 <ol className="divide-y divide-line border-y border-line">{(briefs.data ?? []).map((b) => (
                   <li key={b.briefId} className="flex items-center gap-3 py-2">
-                    <Link href={`/brief/${b.briefId}`} className="min-w-0 flex-1 hover:underline"><span className="block truncate font-serif text-sm font-semibold">{b.title}</span><span className="text-xs text-muted">{b.brandName} · {b.conceptIds.length} concept(s)</span></Link>
+                    <Link href={`/brief/${b.briefId}`} className="min-w-0 flex-1 hover:underline"><span className="block truncate font-serif text-sm font-semibold">{b.title}</span><span className="text-xs text-muted">{b.brandName} | {b.conceptIds.length} concept(s)</span></Link>
                     <StatusChip status={b.status} kind="brief" />
                   </li>
                 ))}</ol>}
