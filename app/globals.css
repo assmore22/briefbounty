@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+html, body { height: 100%; }
+body {
+  @apply bg-bg text-ink font-sans antialiased;
+  /* CSS-only paper texture: faint fibers + baseline rule */
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(176,137,54,0.04), transparent 40%),
+    radial-gradient(circle at 85% 60%, rgba(31,111,120,0.035), transparent 45%),
+    repeating-linear-gradient(0deg, rgba(20,17,15,0.018) 0px, rgba(20,17,15,0.018) 1px, transparent 1px, transparent 26px);
+}
+::selection { background: rgba(162, 62, 42, 0.22); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #cdbfa6; border-radius: 4px; border: 2px solid #F5F0E6; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background: #bdae93; background-clip: padding-box; }
+
+@layer components {
+  .sheet { @apply rounded border border-line bg-paper shadow-sheet; }
+  .kicker { @apply text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-primary; }
+  .label { @apply text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-muted; }
+  .headline { @apply font-serif font-semibold tracking-tight text-ink; }
+  .rule { @apply border-t border-line; }
+  .field {
+    @apply w-full rounded border border-line bg-paper px-3 py-2 text-sm text-ink
+      placeholder:text-muted/60 focus:border-primary focus:outline-none focus:ring-2
+      focus:ring-primary/15 transition;
+  }
+  .btn { @apply inline-flex select-none items-center justify-center gap-2 rounded border px-3 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply border-primary bg-primary text-paper hover:bg-primary/90; }
+  .btn-accent { @apply border-accent bg-accent text-paper hover:bg-accent/90; }
+  .btn-ghost { @apply border-line bg-paper text-ink hover:bg-bg; }
+  .btn-xs { @apply px-2.5 py-1 text-xs; }
+  .mono { @apply font-mono tabular-nums; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded border px-2 py-0.5 text-xs font-semibold; }
+  .inkshimmer { background: linear-gradient(90deg, transparent, rgba(20,17,15,0.10), transparent); background-size: 200% 100%; @apply animate-inkline; }
+}
